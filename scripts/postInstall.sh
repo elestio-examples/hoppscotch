@@ -24,5 +24,5 @@ curl http://${target}/v1/auth/signin?origin=admin \
 
 docker-compose exec -T hoppscotch-db sh -c "psql -U postgres postgres <<EOF
 \c hoppscotch
-UPDATE user SET displayName='admin', isAdmin='true' WHERE email='${ADMIN_EMAIL}';
+UPDATE \"User\" SET \"displayName\"='admin', \"isAdmin\"='true' WHERE \"email\"='${ADMIN_EMAIL}';
 EOF";
