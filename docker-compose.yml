@@ -63,7 +63,6 @@ services:
     image: elestio/postgres:15
     ports:
       - "172.17.0.1:5282:5432"
-    user: postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: ${ADMIN_PASSWORD}

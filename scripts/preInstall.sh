@@ -1,7 +1,8 @@
 #set env vars
 set -o allexport; source .env; set +o allexport;
 
-
+mkdir -p ./pgdata
+chown -R 1000:1000 ./pgdata
 
 cat <<EOT > ./servers.json
 {
