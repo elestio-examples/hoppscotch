@@ -68,6 +68,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: ${ADMIN_PASSWORD}
       POSTGRES_DB: hoppscotch
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/
 
   pgadmin4:
     image: dpage/pgadmin4:latest
