@@ -24,7 +24,7 @@ services:
   # NOTE: To do TLS or play around with how the app is hosted, you can look into the Caddyfile for
   #       the SH admin dashboard server at packages/hoppscotch-selfhost-web/Caddyfile
   hoppscotch-app:
-    images: elestio4test/hoppscotch-app:latest
+    image: elestio4test/hoppscotch-app:latest
     env_file:
       - ./.env
     depends_on:
