@@ -21,3 +21,8 @@ curl http://${target}/v1/auth/signin?origin=admin \
   -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36' \
   --data-raw '{"email":"'${ADMIN_EMAIL}'"}' \
   --compressed
+
+docker-compose exec -T hoppscotch-db sh -c "psql -U postgres postgres <<EOF
+\c hoppscotch
+UPDATE user SET displayName='admin', isAdmin='true' WHERE email='${ADMIN_EMAIL}';
+EOF";
