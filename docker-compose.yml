@@ -11,10 +11,10 @@ services:
     environment:
       - DATABASE_URL=postgresql://postgres:${ADMIN_PASSWORD}@hoppscotch-db:5432/hoppscotch?connect_timeout=300
       - PORT=3170
-    volumes:
-      # Uncomment the line below when modifying code. Only applicable when using the "dev" target.
-      - ./packages/hoppscotch-backend/:/usr/src/app
-      # - /usr/src/app/node_modules/
+    # volumes:
+    # Uncomment the line below when modifying code. Only applicable when using the "dev" target.
+    # - ./packages/hoppscotch-backend/:/usr/src/app
+    # - /usr/src/app/node_modules/
     depends_on:
       - hoppscotch-db
     ports:
