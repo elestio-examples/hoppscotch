@@ -82,6 +82,10 @@ environments:
     value: "wss://[CI_CD_DOMAIN]:7443/graphql"
   - key: "VITE_BACKEND_API_URL"
     value: "https://[CI_CD_DOMAIN]:7443/v1"
+  - key: "VITE_APP_TOS_LINK"
+    value: "https://docs.hoppscotch.io/support/terms"
+  - key: "VITE_APP_PRIVACY_POLICY_LINK"
+    value: "https://docs.hoppscotch.io/support/privacy"
 
 config:
   runTime: "dockerCompose"
