@@ -8,6 +8,10 @@ Deploy Hoppscotch server with CI/CD on Elestio
 <br/>
 <br/>
 
+# Important
+
+During deployment you will receive an email from Hoppscotch, the link will not be valid but will prove that you are registered as an administrator.
+
 # Once deployed ...
 
 You can open Hoppscotch here:
