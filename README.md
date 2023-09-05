@@ -26,6 +26,6 @@ You can open Hoppscotch Admin here:
 
 You can open pgAdmin web UI here:
 
-    URL: https://[CI_CD_DOMAIN]:8443
+    URL: https://[CI_CD_DOMAIN]:6443
     email: [ADMIN_EMAIL]
     password: [ADMIN_PASSWORD]
