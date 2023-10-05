@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+rm package.json
 cp -rf ./packages/hoppscotch-sh-admin/* ./
 rm -f docker-compose.yml
 mv docker-compose-new.yml docker-compose.yml
