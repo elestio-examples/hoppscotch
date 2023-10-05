@@ -1,0 +1,57 @@
+# Use postgres/example user/password credentials
+version: "3.3"
+
+services:
+  hoppscotch-backend:
+    image: elestio/hoppscotch-backend:${SOFTWARE_VERSION_TAG}
+    env_file:
+      - ./.env
+    restart: always
+    environment:
+      - DATABASE_URL=postgresql://postgres:${ADMIN_PASSWORD}@hoppscotch-db:5432/hoppscotch?connect_timeout=300
+      - PORT=3170
+    depends_on:
+      - hoppscotch-db
+    ports:
+      - "172.17.0.1:3170:3170"
+
+  hoppscotch-app:
+    image: elestio4test/hoppscotch-app:${SOFTWARE_VERSION_TAG}
+    env_file:
+      - ./.env
+    depends_on:
+      - hoppscotch-backend
+    ports:
+      - "172.17.0.1:3130:8080"
+
+  hoppscotch-sh-admin:
+    image: elestio/hoppscotch-sh-admin:${SOFTWARE_VERSION_TAG}
+    env_file:
+      - ./.env
+    depends_on:
+      - hoppscotch-backend
+    ports:
+      - "172.17.0.1:3100:8080"
+
+  hoppscotch-db:
+    image: elestio/postgres:15
+    ports:
+      - "172.17.0.1:5282:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${ADMIN_PASSWORD}
+      POSTGRES_DB: hoppscotch
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data/
+
+  pgadmin4:
+    image: dpage/pgadmin4:latest
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${ADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${ADMIN_PASSWORD}
+      PGADMIN_LISTEN_PORT: 8080
+    ports:
+      - "172.17.0.1:8689:8080"
+    volumes:
+      - ./servers.json:/pgadmin4/servers.json
