@@ -21,11 +21,11 @@ You can open Hoppscotch here:
 
 You can open Hoppscotch Admin here:
 
-    URL: https://[CI_CD_DOMAIN]:23200
+    URL: https://[CI_CD_DOMAIN]:8443
     email: [ADMIN_EMAIL]
 
 You can open pgAdmin web UI here:
 
-    URL: https://[CI_CD_DOMAIN]:42145
+    URL: https://[CI_CD_DOMAIN]:6443
     email: [ADMIN_EMAIL]
     password: [ADMIN_PASSWORD]
