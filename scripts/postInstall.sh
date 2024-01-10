@@ -3,14 +3,16 @@ set -o allexport; source .env; set +o allexport;
 
 #wait until the server is ready
 echo "Waiting for software to be ready ..."
-sleep 30s;
+sleep 45s;
 
-docker-compose exec -T hoppscotch-backend /bin/sh -c "pnpx prisma migrate deploy"
+docker-compose run -T hoppscotch-backend /bin/sh -c "pnpx prisma migrate deploy"
 
+docker-compose down;
+docker-compose up -d
 
+sleep 45s;
 
-
-target=$(docker-compose port hoppscotch-backend 3170)
+target=$(docker-compose port hoppscotch-backend 8080)
 
 curl http://${target}/v1/auth/signin?origin=admin \
   -H 'accept: application/json, text/plain, */*' \
