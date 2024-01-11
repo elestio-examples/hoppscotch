@@ -3,38 +3,41 @@ version: "3.3"
 
 services:
   hoppscotch-backend:
-    image: hoppscotch/hoppscotch-backend:${SOFTWARE_VERSION_TAG}
+    image: elestio/hoppscotch-backend:${SOFTWARE_VERSION_TAG}
     env_file:
       - ./.env
     restart: always
     environment:
       - DATABASE_URL=postgresql://postgres:${ADMIN_PASSWORD}@hoppscotch-db:5432/hoppscotch?connect_timeout=300
-      - PORT=3170
+      - PORT=8080
     depends_on:
       - hoppscotch-db
     ports:
-      - "172.17.0.1:3170:3170"
+      - "172.17.0.1:3170:8080"
 
   hoppscotch-app:
-    image: hoppscotch/hoppscotch-frontend:${SOFTWARE_VERSION_TAG}
+    image: elestio/hoppscotch-app:${SOFTWARE_VERSION_TAG}
+    restart: always
     env_file:
       - ./.env
     depends_on:
       - hoppscotch-backend
     ports:
-      - "172.17.0.1:3130:8080"
+      - "172.17.0.1:3130:3000"
 
   hoppscotch-sh-admin:
     image: elestio4test/hoppscotch-sh-admin:${SOFTWARE_VERSION_TAG}
+    restart: always
     env_file:
       - ./.env
     depends_on:
       - hoppscotch-backend
     ports:
-      - "172.17.0.1:3100:8080"
+      - "172.17.0.1:3100:3100"
 
   hoppscotch-db:
     image: elestio/postgres:15
+    restart: always
     ports:
       - "172.17.0.1:5282:5432"
     environment:
@@ -45,7 +48,7 @@ services:
       - ./pgdata:/var/lib/postgresql/data/
 
   pgadmin4:
-    image: dpage/pgadmin4:latest
+    image: elestio/pgadmin:latest
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: ${ADMIN_EMAIL}
